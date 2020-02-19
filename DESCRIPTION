@@ -1,13 +1,19 @@
 Package: pkgtrkr
-Title: What the Package Does (One Line, Title Case)
+Title: Track the Usage of Packages
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Alexandre",
+           family = "Courtiol",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: What license it uses
+           email = "alexandre.courtiol@gmail.com",
+           comment = c(ORCID = "0000-0003-0637-2959"))
+Description: This package allows you to track when you used a given package
+    for the last time. The goal is to identify the packages that you no longer
+    use, so that you can delete them and thus avoid unnecessary updates in the
+    future.
+License: GPL-2
 Encoding: UTF-8
 LazyData: true
+Imports: 
+    later,
+    hashmap
