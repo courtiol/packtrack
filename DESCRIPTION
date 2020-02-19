@@ -11,7 +11,7 @@ Description: This package allows you to track when you used a given package
     for the last time. The goal is to identify the packages that you no longer
     use, so that you can delete them and thus avoid unnecessary updates in the
     future.
-License: GPL-2
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports: 
