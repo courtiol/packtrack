@@ -7,9 +7,9 @@ Authors@R:
            role = c("aut", "cre"),
            email = "alexandre.courtiol@gmail.com",
            comment = c(ORCID = "0000-0003-0637-2959"))
-Description: This package allows you to track when you used a given package
-    for the last time. The goal is to identify the packages that you no longer
-    use, so that you can delete them and thus avoid unnecessary updates in the
+Description: This package allows you to track your R package usage.
+    The goal is to identify the packages that you don't use much,
+    so that you can delete them and thus avoid unnecessary updates in the
     future.
 License: GPL-3
 Encoding: UTF-8
