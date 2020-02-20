@@ -34,7 +34,7 @@ pktk_view()        ## we check which namespaces have been loaded
 ## What to expect in the future
 
 - better tracking (not all namespaces are being tracked in all circumstances)
-- information collected will not disappear when you close R (by means of the package __{later}__ and/or __{callr}__ or __{processx}__
+- information collected will not disappear when you close R (by means of the package __{later}__ and/or __{callr}__ or __{processx}__)
 - companion functions to explore the collected data and help you diagnose which packages can be safely deleted
 
 ## CRAN release? Unlikely!
