@@ -12,8 +12,8 @@ This package is __highly experimental__ and far from being complete.
 
 The main motivation for this project is that R packages tend to accumulate.
 This leads the update time to increase because even packages never used are updated.
-__{packtrack}__ will help identifying the packages you do not use often, so that you can remove them.
-The package can also be used to study which dependencies are really used in practice, which could help developers knowing which dependencies they could move from _Import_ to _Suggests_.
+__{packtrack}__ will help you identify the packages you do not use often, so that you can remove them.
+The package can also be used to study which dependencies are really used in practice, which could help developers know which dependencies they could move from _Import_ to _Suggests_.
 
 ## Installation
 
@@ -27,8 +27,8 @@ remotes::install_github("courtiol/packtrack")
 
 ``` r
 library(packtrack)
-library(tidyverse)
-pktk_view()
+library(tidyverse) ## we load many namespaces
+pktk_view()        ## we check which namespaces have been loaded
 ```
 
 ## What to expect in the future
@@ -37,7 +37,7 @@ pktk_view()
 - information collected will not disappear when you close R (by means of the package __{later}__ and/or __{callr}__ or __{processx}__
 - companion functions to explore the collected data and help you diagnose which packages can be safely deleted
 
-## CRAN release?
+## CRAN release? Unlikely!
 
 This package will probably never be released on CRAN since the tracking procedure implies overriding an R base function, which is against CRAN policies (for good reasons)
 
