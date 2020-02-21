@@ -4,10 +4,19 @@
 \alias{pktk_view}
 \title{View the data}
 \usage{
-pktk_view()
+pktk_view(previously_loaded = non_used, non_used = FALSE)
+}
+\arguments{
+\item{previously_loaded}{boolean indicating whether to add (TRUE) or not
+(FALSE) information about packages that were already loaded before
+that the tracking was activated. This includes for instance the packtrack package
+itself. Default is to do the same as the argument selected for non_used.}
+
+\item{non_used}{a boolean indicating whether to add (TRUE) or not
+(FALSE, default) information about packages not recorded during tracking.}
 }
 \description{
-This function display information about the usage of the packages.
+This function displays information about the usage of the packages.
 }
 \examples{
  pktk_view()
