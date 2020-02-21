@@ -30,9 +30,43 @@ remotes::install_github("courtiol/packtrack")
 ## Example
 
 ``` r
-library(packtrack)
-library(tidyverse) ## we load many namespaces
-pktk_view()        ## we check which namespaces have been loaded
+library(packtrack)     ## tracking begins
+#> packtrack version 0.0.0.9000 is loaded: the usage of your packages is being tracked (@^@)!
+
+pktk_view()            ## no packages used yet
+#>     package         last_loaded times_used
+#> 1 @^@_start 2020-02-21 09:20:38          0
+
+library(stringr)       ## we load stringr
+
+pktk_view()            ## stringr has been imported
+#>     package         last_loaded times_used
+#> 1 @^@_start 2020-02-21 09:20:38          0
+#> 2   stringr 2020-02-21 09:20:38          1
+
+str_c("foo", "bar")    ## we use a function not using dependencies
+#> [1] "foobar"
+
+pktk_view()            ## no package has been used
+#>     package         last_loaded times_used
+#> 1 @^@_start 2020-02-21 09:20:38          0
+#> 2   stringr 2020-02-21 09:20:38          1
+
+str_glue("foo", "bar") ## we use a function using dependencies
+#> foobar
+
+pktk_view()            ## several packages have been used
+#>     package         last_loaded times_used
+#> 1 @^@_start 2020-02-21 09:20:38          0
+#> 2    crayon 2020-02-21 09:20:38          1
+#> 3      glue 2020-02-21 09:20:38          1
+#> 4 grDevices 2020-02-21 09:20:38          4
+#> 5   methods 2020-02-21 09:20:38          2
+#> 6     stats 2020-02-21 09:20:38          1
+#> 7   stringr 2020-02-21 09:20:38          1
+#> 8     utils 2020-02-21 09:20:38          5
+
+<sup>Created on 2020-02-21 by the [reprex package](https://reprex.tidyverse.org) (v0.3.0)</sup>
 ```
 
 ## What to expect in the future
