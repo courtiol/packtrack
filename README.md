@@ -6,18 +6,18 @@
 [![CRAN status](https://www.r-pkg.org/badges/version/packtrack)](https://CRAN.R-project.org/package=packtrack)
 <!-- badges: end -->
 
-The goal of __{packtrack}__ is to track the usage of R packages.
+The goal of __{packtrack}__ is to track the usage of R packages on your system.
 
 This package is __highly experimental__ and far from being complete.
 
 The main motivation for this project is that R packages tend to accumulate beyond desire.
 If you install a package to try out, it usually comes with new dependencies that will be installed alongside with it.
 Thus, unless you are very meticulous or use particular systems such as __{packrat}__, you will quickly loose track of what you actually need to keep on your system.
-Installed packages do not take much space on the disk but one major caveat of keeping unnecessary dependencies is that your update time will increase as the number of R packages on your system grows.
+Installed packages do not take much space on the disk, but one major caveat of keeping unnecessary dependencies is that your update time will increase with the number of installed R packages.
 
-By tracking which packages you are using, __{packtrack}__ will help you identify which ones you don't use, so that you can remove them.
+By tracking which packages you are using, __{packtrack}__ will help you identify which are the ones you don't use, so that you can remove them.
 
-The package can also be used to study which dependencies are really used in practice, which can help developers know which dependencies they could move from _Import_ to _Suggests_.
+The package can also be used to study which dependencies are used in practice during various workflow, which can help developers identify which dependencies they could move from _Import_ to _Suggests_.
 
 ## Installation
 
@@ -73,18 +73,17 @@ pktk_view()            ## several packages have been used
 
 - better tracking (not all namespaces are being tracked in all circumstances)
 - information collected will not disappear when you close R (by means of the package __{later}__ and/or __{callr}__ or __{processx}__)
-- companion functions to explore the collected data and help you diagnose which packages can be safely deleted
+- companion functions to explore the collected data and help you diagnose which R packages can be safely deleted from your system
 
 ## CRAN release?
 
-Under the current implementation, the tracking procedure implies overriding an R base function, which is against CRAN policies (for good reasons).
+Under the current implementation, the tracking procedure implies overriding a base function, which is against CRAN policies (for good reasons).
 It would be possible to do similar things without overriding any function, but that would imply to run a loop in the background.
 Such a loop would be needed to regularly check which namespaces have been loaded and update the list of packages that have been used.
-The result would be almost the same, but such a loop would use system resources.
-One difference is that the tracking would also not be able to count how many import of the same package have been performed but perhaps, this information is not really interesting anyhow...
+The result would be almost the same, but such a loop would use more system resources and one difference is that the tracking would also not be able to count how many imports of the same package have been performed (but perhaps, this information is not really interesting anyhow...).
 
 ## Help \& feedbacks wanted!
 
-If you find that this is an idea worth pursuing, please let me know.
-Also, developing is always more fun when it becomes a collaborative work.
-So please email me or leave an issue if you want to get involved!
+If you find that this package is an idea worth pursuing, please let me know.
+Developing is always more fun when it becomes a collaborative work.
+So please also email me (or leave an issue) if you want to get involved!
