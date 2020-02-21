@@ -53,6 +53,7 @@
   NULL
 }
 
+
 #' Unload
 #'
 #' This function should not be called by the user. It reset original R
@@ -65,8 +66,12 @@
 #' @export
 #'
 .onUnload <- function(libpath) {
+
+  ## remove @^@ in R prompt if needed:
   options("prompt" = gsub(pattern = "@^@ ", replacement = "",
                           x =  options("prompt"), fixed = TRUE))
+
+  ## restore original loadNamespace function:
   assign("loadNamespace", .pktk_data$loadNamespace_original, "package:base")
 }
 
