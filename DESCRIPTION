@@ -8,9 +8,10 @@ Authors@R:
            email = "alexandre.courtiol@gmail.com",
            comment = c(ORCID = "0000-0003-0637-2959"))
 Description: This package allows you to track your R package usage.
-    The goal is to identify the packages that you don't use much,
-    so that you can delete them and thus avoid unnecessary updates in the
-    future.
+    The data gathered by packtrack can be used to identify the packages
+    you don't use much, so that you can delete them and avoid unnecessary
+    updates in the future. The package also allows developers to investigate
+    which dependencies they need to keep in practice.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

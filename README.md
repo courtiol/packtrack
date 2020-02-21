@@ -10,10 +10,14 @@ The goal of __{packtrack}__ is to track the usage of R packages.
 
 This package is __highly experimental__ and far from being complete.
 
-The main motivation for this project is that R packages tend to accumulate.
-This leads the update time to increase because even packages never used are updated.
-__{packtrack}__ will help you identify the packages you do not use often, so that you can remove them.
-The package can also be used to study which dependencies are really used in practice, which could help developers know which dependencies they could move from _Import_ to _Suggests_.
+The main motivation for this project is that R packages tend to accumulate beyond desire.
+If you install a package to try out, it usually comes with new dependencies that will be installed alongside with it.
+Thus, unless you are very meticulous or use particular systems such as __{packrat}__, you will quickly loose track of what you actually need to keep on your system.
+Installed packages do not take much space on the disk but one major caveat of keeping unnecessary dependencies is that your update time will increase as the number of R packages on your system grows.
+
+By tracking which packages you are using, __{packtrack}__ will help you identify which ones you don't use, so that you can remove them.
+
+The package can also be used to study which dependencies are really used in practice, which can help developers know which dependencies they could move from _Import_ to _Suggests_.
 
 ## Installation
 
