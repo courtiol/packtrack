@@ -75,9 +75,13 @@ pktk_view()            ## several packages have been used
 - information collected will not disappear when you close R (by means of the package __{later}__ and/or __{callr}__ or __{processx}__)
 - companion functions to explore the collected data and help you diagnose which packages can be safely deleted
 
-## CRAN release? Unlikely!
+## CRAN release?
 
-This package will probably never be released on CRAN since the tracking procedure implies overriding an R base function, which is against CRAN policies (for good reasons)
+Under the current implementation, the tracking procedure implies overriding an R base function, which is against CRAN policies (for good reasons).
+It would be possible to do similar things without overriding any function, but that would imply to run a loop in the background.
+Such a loop would be needed to regularly check which namespaces have been loaded and update the list of packages that have been used.
+The result would be almost the same, but such a loop would use system resources.
+One difference is that the tracking would also not be able to count how many import of the same package have been performed but perhaps, this information is not really interesting anyhow...
 
 ## Help \& feedbacks wanted!
 
