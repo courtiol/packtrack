@@ -49,81 +49,74 @@ library(packtrack) ## tracking begins
 
 pktk_view() ## no packages used yet
 #>     package         last_loaded times_loaded
-#> 1 @^@_start 2020-02-24 13:34:57            0
+#> 1 @^@_start 2020-02-24 13:50:10            0
 
 library(stringr) ## we load stringr
 
 pktk_view() ## stringr has been imported
 #>     package         last_loaded times_loaded
-#> 1 @^@_start 2020-02-24 13:34:57            0
-#> 2   stringr 2020-02-24 13:34:57            1
+#> 1 @^@_start 2020-02-24 13:50:10            0
+#> 2   stringr 2020-02-24 13:50:10            1
 
 str_c("foo", "bar") ## we use a function not using dependencies
 #> [1] "foobar"
 
 pktk_view() ## no package has been used
 #>     package         last_loaded times_loaded
-#> 1 @^@_start 2020-02-24 13:34:57            0
-#> 2   stringr 2020-02-24 13:34:57            1
+#> 1 @^@_start 2020-02-24 13:50:10            0
+#> 2   stringr 2020-02-24 13:50:10            1
 
 str_glue("foo", "bar") ## we use a function using dependencies
 #> foobar
 
 pktk_view() ## several packages have been used
 #>     package         last_loaded times_loaded
-#> 1 @^@_start 2020-02-24 13:34:57            0
-#> 2    crayon 2020-02-24 13:34:57            1
-#> 3      glue 2020-02-24 13:34:57            1
-#> 4 grDevices 2020-02-24 13:34:57            4
-#> 5   methods 2020-02-24 13:34:57            2
-#> 6     stats 2020-02-24 13:34:57            1
-#> 7   stringr 2020-02-24 13:34:57            1
-#> 8     utils 2020-02-24 13:34:57            5
+#> 1 @^@_start 2020-02-24 13:50:10            0
+#> 2    crayon 2020-02-24 13:50:10            1
+#> 3      glue 2020-02-24 13:50:10            1
+#> 4 grDevices 2020-02-24 13:50:10            4
+#> 5   methods 2020-02-24 13:50:10            2
+#> 6     stats 2020-02-24 13:50:10            1
+#> 7   stringr 2020-02-24 13:50:10            1
+#> 8     utils 2020-02-24 13:50:10            5
 
 pktk_view(previously_loaded = TRUE) ## also includes the packages loaded before tracking
 #>      package         last_loaded times_loaded
-#> 1       base                <NA>            1
-#> 2  codetools                <NA>            1
-#> 3   compiler                <NA>            1
-#> 4     crayon 2020-02-24 13:34:57            1
-#> 5     crayon                <NA>            1
+#> 1  @^@_start 2020-02-24 13:50:10            0
+#> 2       base                <NA>            1
+#> 3  codetools                <NA>            1
+#> 4   compiler                <NA>            1
+#> 5     crayon 2020-02-24 13:50:10            1
 #> 6   datasets                <NA>            1
 #> 7     digest                <NA>            1
 #> 8   evaluate                <NA>            1
-#> 9       glue 2020-02-24 13:34:57            1
-#> 10      glue                <NA>            1
-#> 11  graphics                <NA>            1
-#> 12 grDevices 2020-02-24 13:34:57            4
-#> 13 grDevices                <NA>            1
-#> 14   hashmap                <NA>            1
-#> 15 htmltools                <NA>            1
-#> 16     knitr                <NA>            1
-#> 17  magrittr                <NA>            1
-#> 18   methods 2020-02-24 13:34:57            2
-#> 19   methods                <NA>            1
-#> 20 packtrack                <NA>            1
-#> 21      Rcpp                <NA>            1
-#> 22     rlang                <NA>            1
-#> 23 rmarkdown                <NA>            1
-#> 24     stats 2020-02-24 13:34:57            1
-#> 25     stats                <NA>            1
-#> 26   stringi                <NA>            1
-#> 27   stringr 2020-02-24 13:34:57            1
-#> 28   stringr                <NA>            1
-#> 29     tools                <NA>            1
-#> 30     utils 2020-02-24 13:34:57            5
-#> 31     utils                <NA>            1
-#> 32      xfun                <NA>            1
-#> 33      yaml                <NA>            1
-#> 34 @^@_start 2020-02-24 13:34:57            0
+#> 9       glue 2020-02-24 13:50:10            1
+#> 10  graphics                <NA>            1
+#> 11 grDevices 2020-02-24 13:50:10            4
+#> 12   hashmap                <NA>            1
+#> 13 htmltools                <NA>            1
+#> 14     knitr                <NA>            1
+#> 15  magrittr                <NA>            1
+#> 16   methods 2020-02-24 13:50:10            2
+#> 17 packtrack                <NA>            1
+#> 18      Rcpp                <NA>            1
+#> 19     rlang                <NA>            1
+#> 20 rmarkdown                <NA>            1
+#> 21     stats 2020-02-24 13:50:10            1
+#> 22   stringi                <NA>            1
+#> 23   stringr 2020-02-24 13:50:10            1
+#> 24     tools                <NA>            1
+#> 25     utils 2020-02-24 13:50:10            5
+#> 26      xfun                <NA>            1
+#> 27      yaml                <NA>            1
 
 all_pkg <- pktk_view(non_used = TRUE) ## also includes all other packages installed on the system
 
 sum(all_pkg$times_loaded != 0) ## number of packages used during this session
-#> [1] 33
+#> [1] 26
 
 sum(all_pkg$times_loaded == 0) ## number of packages not used during this session
-#> [1] 609
+#> [1] 582
 ```
 
 ## What to expect in the future

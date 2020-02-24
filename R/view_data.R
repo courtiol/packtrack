@@ -36,8 +36,9 @@ pktk_view <- function(previously_loaded = non_used, non_used = FALSE) {
 
   ## include previously loaded packages:
   if (previously_loaded) {
-    all_loaded_pkg <- data.frame(package = loadedNamespaces(), last_loaded = NA,  times_loaded = 1)
-    dat <- merge(all_loaded_pkg, dat, all.x = TRUE, all.y = TRUE)
+    loaded_pkg <- data.frame(package = loadedNamespaces(), last_loaded = NA,  times_loaded = 1)
+    loaded_pkg_missing <- loaded_pkg[!loaded_pkg$package %in% dat$package, ]
+    dat <- merge(dat, loaded_pkg_missing, all.x = TRUE, all.y = TRUE)
   }
 
   ## include non-used packages:
@@ -46,7 +47,8 @@ pktk_view <- function(previously_loaded = non_used, non_used = FALSE) {
       stop("Using non_used = TRUE together with previously_loaded = FALSE would not make sense because packages already loaded when the tracking has started would be considered as never used. Consider changing the input of the function!")
     }
     all_pkg <- data.frame(package = dir(.libPaths()), last_loaded = NA,  times_loaded = 0)
-    dat <- merge(all_pkg, dat, all.x = TRUE, all.y = TRUE)
+    all_pkg_missing <- all_pkg[!all_pkg$package %in% dat$package, ]
+    dat <- merge(all_pkg_missing, dat, all.x = TRUE, all.y = TRUE)
   }
 
   ## return the output:
