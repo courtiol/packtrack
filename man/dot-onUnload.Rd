@@ -13,6 +13,3 @@
 This function should not be called by the user. It reset original R
 parameters when the package is being unloaded.
 }
-\seealso{
-\code{\link[base:ns-hooks]{ns-hooks}}
-}

@@ -45,23 +45,23 @@ remotes::install_github("courtiol/packtrack")
 ```{r}
 library(packtrack) ## tracking begins
 
-pktk_view() ## no packages used yet
+packtrack_view() ## no packages used yet
 
 library(stringr) ## we load stringr
 
-pktk_view() ## stringr has been imported
+packtrack_view() ## stringr has been imported
 
 str_c("foo", "bar") ## we use a function not using dependencies
 
-pktk_view() ## no package has been used
+packtrack_view() ## no package has been used
 
 str_glue("foo", "bar") ## we use a function using dependencies
 
-pktk_view() ## several packages have been used
+packtrack_view() ## several packages have been used
 
-pktk_view(previously_loaded = TRUE) ## also includes the packages loaded before tracking
+packtrack_view(previously_loaded = TRUE) ## also includes the packages loaded before tracking
 
-all_pkg <- pktk_view(non_used = TRUE) ## also includes all other packages installed on the system
+all_pkg <- packtrack_view(non_used = TRUE) ## also includes all other packages installed on the system
 
 sum(all_pkg$times_loaded != 0) ## number of packages used during this session
 

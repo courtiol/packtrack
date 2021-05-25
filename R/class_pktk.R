@@ -10,7 +10,7 @@
 print.pktk <- function(x, ...) {
 
   cat("internal object storing the data required for packtrack...\n",
-      "To see the collected data, please run pktk_view()")
+      "To see the collected data, please run packtrack_view()")
 
   return(invisible(x))
 }

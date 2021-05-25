@@ -38,6 +38,7 @@ which dependencies they could move from *Import* to *Suggests*.
 You can install this package using **{remotes}** (or **{devtools}**):
 
 ``` r
+remotes::install_github("nathan-russell/hashmap") ## needed
 remotes::install_github("courtiol/packtrack")
 ```
 
@@ -47,85 +48,85 @@ remotes::install_github("courtiol/packtrack")
 library(packtrack) ## tracking begins
 #> packtrack version 0.0.0.9000 is loaded: the usage of your packages is being tracked (@^@)!
 
-pktk_view() ## no packages used yet
+packtrack_view() ## no packages used yet
 #>     package         last_loaded times_loaded
-#> 1 @^@_start 2020-02-24 13:50:10            0
+#> 1 @^@_start 2021-05-25 16:49:15            0
 
 library(stringr) ## we load stringr
 
-pktk_view() ## stringr has been imported
+packtrack_view() ## stringr has been imported
 #>     package         last_loaded times_loaded
-#> 1 @^@_start 2020-02-24 13:50:10            0
-#> 2   stringr 2020-02-24 13:50:10            1
+#> 1 @^@_start 2021-05-25 16:49:15            0
+#> 2   stringr 2021-05-25 16:49:15            1
 
 str_c("foo", "bar") ## we use a function not using dependencies
 #> [1] "foobar"
 
-pktk_view() ## no package has been used
+packtrack_view() ## no package has been used
 #>     package         last_loaded times_loaded
-#> 1 @^@_start 2020-02-24 13:50:10            0
-#> 2   stringr 2020-02-24 13:50:10            1
+#> 1 @^@_start 2021-05-25 16:49:15            0
+#> 2   stringr 2021-05-25 16:49:15            1
 
 str_glue("foo", "bar") ## we use a function using dependencies
 #> foobar
 
-pktk_view() ## several packages have been used
+packtrack_view() ## several packages have been used
 #>     package         last_loaded times_loaded
-#> 1 @^@_start 2020-02-24 13:50:10            0
-#> 2    crayon 2020-02-24 13:50:10            1
-#> 3      glue 2020-02-24 13:50:10            1
-#> 4 grDevices 2020-02-24 13:50:10            4
-#> 5   methods 2020-02-24 13:50:10            2
-#> 6     stats 2020-02-24 13:50:10            1
-#> 7   stringr 2020-02-24 13:50:10            1
-#> 8     utils 2020-02-24 13:50:10            5
+#> 1 @^@_start 2021-05-25 16:49:15            0
+#> 2    crayon 2021-05-25 16:49:15            1
+#> 3      glue 2021-05-25 16:49:15            1
+#> 4 grDevices 2021-05-25 16:49:15            4
+#> 5   methods 2021-05-25 16:49:15            2
+#> 6     stats 2021-05-25 16:49:15            1
+#> 7   stringr 2021-05-25 16:49:15            1
+#> 8     utils 2021-05-25 16:49:15            5
 
-pktk_view(previously_loaded = TRUE) ## also includes the packages loaded before tracking
+packtrack_view(previously_loaded = TRUE) ## also includes the packages loaded before tracking
 #>      package         last_loaded times_loaded
-#> 1  @^@_start 2020-02-24 13:50:10            0
+#> 1  @^@_start 2021-05-25 16:49:15            0
 #> 2       base                <NA>            1
 #> 3  codetools                <NA>            1
 #> 4   compiler                <NA>            1
-#> 5     crayon 2020-02-24 13:50:10            1
+#> 5     crayon 2021-05-25 16:49:15            1
 #> 6   datasets                <NA>            1
 #> 7     digest                <NA>            1
 #> 8   evaluate                <NA>            1
-#> 9       glue 2020-02-24 13:50:10            1
+#> 9       glue 2021-05-25 16:49:15            1
 #> 10  graphics                <NA>            1
-#> 11 grDevices 2020-02-24 13:50:10            4
+#> 11 grDevices 2021-05-25 16:49:15            4
 #> 12   hashmap                <NA>            1
 #> 13 htmltools                <NA>            1
 #> 14     knitr                <NA>            1
 #> 15  magrittr                <NA>            1
-#> 16   methods 2020-02-24 13:50:10            2
+#> 16   methods 2021-05-25 16:49:15            2
 #> 17 packtrack                <NA>            1
 #> 18      Rcpp                <NA>            1
 #> 19     rlang                <NA>            1
 #> 20 rmarkdown                <NA>            1
-#> 21     stats 2020-02-24 13:50:10            1
+#> 21     stats 2021-05-25 16:49:15            1
 #> 22   stringi                <NA>            1
-#> 23   stringr 2020-02-24 13:50:10            1
+#> 23   stringr 2021-05-25 16:49:15            1
 #> 24     tools                <NA>            1
-#> 25     utils 2020-02-24 13:50:10            5
+#> 25     utils 2021-05-25 16:49:15            5
 #> 26      xfun                <NA>            1
 #> 27      yaml                <NA>            1
 
-all_pkg <- pktk_view(non_used = TRUE) ## also includes all other packages installed on the system
+all_pkg <- packtrack_view(non_used = TRUE) ## also includes all other packages installed on the system
 
 sum(all_pkg$times_loaded != 0) ## number of packages used during this session
 #> [1] 26
 
 sum(all_pkg$times_loaded == 0) ## number of packages not used during this session
-#> [1] 582
+#> [1] 194
 ```
 
 ## What to expect in the future
 
-  - better tracking (not all namespaces are being tracked in all
+-   better tracking (not all namespaces are being tracked in all
     circumstances)
-  - information collected will not disappear when you close R (by means
+-   information collected will not disappear when you close R (by means
     of the package **{later}** and/or **{callr}** or **{processx}**)
-  - companion functions to explore the collected data and help you
+-   companion functions to explore the collected data and help you
     diagnose which R packages can be safely deleted from your system
 
 ## CRAN release?
@@ -141,9 +142,9 @@ resources and one difference is that the tracking would also not be able
 to count how many imports of the same package have been performed (but
 perhaps, this information is not really interesting anyhow…).
 
-## Help & feedbacks wanted\!
+## Help & feedbacks wanted!
 
 If you find that this package is an idea worth pursuing, please let me
 know. Developing is always more fun when it becomes a collaborative
 work. So please also email me (or leave an issue) if you want to get
-involved\!
+involved!

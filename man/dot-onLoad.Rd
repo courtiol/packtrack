@@ -16,6 +16,3 @@ This function should not be called by the user. It set initiate some hidden
 variables used by this packages when the package is being loaded. The
 function also modifies the prompt to indicate that packtrack is running.
 }
-\seealso{
-\code{\link[base:ns-hooks]{ns-hooks}}
-}

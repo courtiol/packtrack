@@ -7,13 +7,13 @@
 #'
 #' @export
 #'
-pktk_update <- function(pkg) {
-  .pktk_data$time[[pkg]] <- Sys.time()
-  if (.pktk_data$n$has_key(pkg)) {
-      .pktk_data$n[[pkg]] <- .pktk_data$n[[pkg]] + 1L
+packtrack_update <- function(pkg) {
+  .packtrack_data$time[[pkg]] <- Sys.time()
+  if (.packtrack_data$n$has_key(pkg)) {
+      .packtrack_data$n[[pkg]] <- .packtrack_data$n[[pkg]] + 1L
   } else {
-    .pktk_data$n[[pkg]] <- 1L
+    .packtrack_data$n[[pkg]] <- 1L
   }
-  #pktk_unlock() ## for unlocking the saving on drive -> for future
+  #packtrack_unlock() ## for unlocking the saving on drive -> for future
   NULL
 }

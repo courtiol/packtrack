@@ -6,8 +6,6 @@
 #' @param libname argument needed but automatically defined.
 #' @param pkgname argument needed but automatically defined.
 #'
-#' @seealso [`ns-hooks`][`base::ns-hooks`]
-#'
 #' @export
 #'
 .onAttach <- function(libname, pkgname) {
@@ -26,17 +24,15 @@
 #' @param libname argument needed but automatically defined.
 #' @param pkgname argument needed but automatically defined.
 #'
-#' @seealso [`ns-hooks`][`base::ns-hooks`]
-#'
 #' @export
 #'
 .onLoad <- function(libname, pkgname) {
 
   ## initialise hidden variables:
-  .pktk_data <<- list(time = hashmap::hashmap("@^@_start", Sys.time()),
+  .packtrack_data <<- list(time = hashmap::hashmap("@^@_start", Sys.time()),
                       n = hashmap::hashmap("@^@_start", 0L),
                       loadNamespace_original = loadNamespace)
-  class(.pktk_data) <<-  c("pktk", class(.pktk_data))
+  class(.packtrack_data) <<-  c("pktk", class(.packtrack_data))
 
   ## change R prompt if needed:
   options("prompt" = paste0("@^@ ", gsub(pattern = "@^@ ", replacement = "",
@@ -45,9 +41,9 @@
   ## override original loadNamespace function:
   unlockBinding("loadNamespace", env = as.environment("package:base"))
   assign("loadNamespace", function(package, ...) {
-    pktk_update(package)
+    packtrack_update(package)
     mf <- as.list(match.call(expand.dots = TRUE))
-    do.call(.pktk_data$loadNamespace_original, mf[-1], envir = parent.frame())
+    do.call(.packtrack_data$loadNamespace_original, mf[-1], envir = parent.frame())
     }, "package:base")
 
   NULL
@@ -61,8 +57,6 @@
 #'
 #' @param libpath argument needed but automatically defined.
 #'
-#' @seealso [`ns-hooks`][`base::ns-hooks`]
-#'
 #' @export
 #'
 .onUnload <- function(libpath) {
@@ -72,6 +66,6 @@
                           x =  options("prompt"), fixed = TRUE))
 
   ## restore original loadNamespace function:
-  assign("loadNamespace", .pktk_data$loadNamespace_original, "package:base")
+  assign("loadNamespace", .packtrack_data$loadNamespace_original, "package:base")
 }
 

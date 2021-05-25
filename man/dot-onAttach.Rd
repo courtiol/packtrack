@@ -15,6 +15,3 @@
 This function should not be called by the user. It displays a message when
 the package is being loaded.
 }
-\seealso{
-\code{\link[base:ns-hooks]{ns-hooks}}
-}
