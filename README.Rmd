@@ -37,6 +37,7 @@ The package can also be used to study which dependencies are used in practice du
 You can install this package using __{remotes}__ (or __{devtools}__):
 
 ``` r
+remotes::install_github("nathan-russell/hashmap") ## dependency needed
 remotes::install_github("courtiol/packtrack")
 ```
 
