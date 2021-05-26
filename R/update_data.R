@@ -1,7 +1,8 @@
 #' Update the dictionary
 #'
-#' This function either adds a new entry to the dictionary if the package is not among
+#' This internal function either adds a new entry to the dictionary if the package is not among
 #' the keys, or refreshes the time stamp otherwise.
+#' It should not be called by the user.
 #'
 #' @param pkg the name of the package to add to the dictionary
 #'
@@ -10,7 +11,7 @@
 packtrack_update <- function(pkg) {
   .packtrack_data$time[[pkg]] <- Sys.time()
   if (.packtrack_data$n$has_key(pkg)) {
-      .packtrack_data$n[[pkg]] <- .packtrack_data$n[[pkg]] + 1L
+    .packtrack_data$n[[pkg]] <- .packtrack_data$n[[pkg]] + 1L
   } else {
     .packtrack_data$n[[pkg]] <- 1L
   }
