@@ -14,10 +14,13 @@
 #'
 #' @export
 #'
-#' @examples
-#'  packtrack_view()
 #'
 packtrack_view <- function(previously_loaded = non_used, non_used = FALSE) {
+
+  ## check that .packtrack_data is present (not the case if packtrack has been stopped with option delete_cache = TRUE):
+  if (!exists(".packtrack_data")) {
+    stop("You must activate packtrack to use this function; call packtrack_start() to do so.")
+  }
 
   ## extract last time a package has been used and set time zone:
   dat_time <- .packtrack_data$time$data.frame()

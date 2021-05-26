@@ -18,7 +18,3 @@ itself. Default is to do the same as the argument selected for non_used.}
 \description{
 This function displays information about the usage of the packages.
 }
-\examples{
- packtrack_view()
-
-}
