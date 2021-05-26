@@ -27,7 +27,7 @@
 #' @export
 #'
 .onLoad <- function(libname, pkgname) {
-  packtrack_start(replace_cache = TRUE)
+  packtrack_start(create_cache = TRUE)
 }
 
 

@@ -69,6 +69,20 @@ sum(all_pkg$times_loaded != 0) ## number of packages used during this session
 sum(all_pkg$times_loaded == 0) ## number of packages not used during this session
 
 packtrack_stop() ## tracking stops
+
+detach(package:stringr) ## detach stringr
+
+packtrack_start() ## tracking starts anew
+
+packtrack_view() ## no packages used yet
+
+packtrack_pause() ## tracking pauses
+
+library(stringr)
+
+packtrack_resume() ## tracking resumes
+
+packtrack_view() ## tidyr has not been tracked
 ```
 
 

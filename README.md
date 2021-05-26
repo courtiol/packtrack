@@ -50,64 +50,64 @@ library(packtrack) ## tracking begins
 
 packtrack_view() ## no packages used yet
 #>     package         last_loaded times_loaded
-#> 1 @^@_start 2021-05-26 10:03:57            0
+#> 1 @^@_start 2021-05-26 11:44:20            0
 
 library(stringr) ## we load stringr
 
 packtrack_view() ## stringr has been imported
 #>     package         last_loaded times_loaded
-#> 1 @^@_start 2021-05-26 10:03:57            0
-#> 2   stringr 2021-05-26 10:03:57            1
+#> 1 @^@_start 2021-05-26 11:44:20            0
+#> 2   stringr 2021-05-26 11:44:21            1
 
 str_c("foo", "bar") ## we use a function not using dependencies
 #> [1] "foobar"
 
 packtrack_view() ## no package has been used
 #>     package         last_loaded times_loaded
-#> 1 @^@_start 2021-05-26 10:03:57            0
-#> 2   stringr 2021-05-26 10:03:57            1
+#> 1 @^@_start 2021-05-26 11:44:20            0
+#> 2   stringr 2021-05-26 11:44:21            1
 
 str_glue("foo", "bar") ## we use a function using dependencies
 #> foobar
 
 packtrack_view() ## several packages have been used
 #>     package         last_loaded times_loaded
-#> 1 @^@_start 2021-05-26 10:03:57            0
-#> 2    crayon 2021-05-26 10:03:57            1
-#> 3      glue 2021-05-26 10:03:57            1
-#> 4 grDevices 2021-05-26 10:03:57            4
-#> 5   methods 2021-05-26 10:03:57            2
-#> 6     stats 2021-05-26 10:03:57            1
-#> 7   stringr 2021-05-26 10:03:57            1
-#> 8     utils 2021-05-26 10:03:57            5
+#> 1 @^@_start 2021-05-26 11:44:20            0
+#> 2    crayon 2021-05-26 11:44:21            1
+#> 3      glue 2021-05-26 11:44:21            1
+#> 4 grDevices 2021-05-26 11:44:21            4
+#> 5   methods 2021-05-26 11:44:21            2
+#> 6     stats 2021-05-26 11:44:21            1
+#> 7   stringr 2021-05-26 11:44:21            1
+#> 8     utils 2021-05-26 11:44:21            5
 
 packtrack_view(previously_loaded = TRUE) ## also includes the packages loaded before tracking
 #>      package         last_loaded times_loaded
-#> 1  @^@_start 2021-05-26 10:03:57            0
+#> 1  @^@_start 2021-05-26 11:44:20            0
 #> 2       base                <NA>            1
 #> 3  codetools                <NA>            1
 #> 4   compiler                <NA>            1
-#> 5     crayon 2021-05-26 10:03:57            1
+#> 5     crayon 2021-05-26 11:44:21            1
 #> 6   datasets                <NA>            1
 #> 7     digest                <NA>            1
 #> 8   evaluate                <NA>            1
-#> 9       glue 2021-05-26 10:03:57            1
+#> 9       glue 2021-05-26 11:44:21            1
 #> 10  graphics                <NA>            1
-#> 11 grDevices 2021-05-26 10:03:57            4
+#> 11 grDevices 2021-05-26 11:44:21            4
 #> 12   hashmap                <NA>            1
 #> 13 htmltools                <NA>            1
 #> 14     knitr                <NA>            1
 #> 15  magrittr                <NA>            1
-#> 16   methods 2021-05-26 10:03:57            2
+#> 16   methods 2021-05-26 11:44:21            2
 #> 17 packtrack                <NA>            1
 #> 18      Rcpp                <NA>            1
 #> 19     rlang                <NA>            1
 #> 20 rmarkdown                <NA>            1
-#> 21     stats 2021-05-26 10:03:57            1
+#> 21     stats 2021-05-26 11:44:21            1
 #> 22   stringi                <NA>            1
-#> 23   stringr 2021-05-26 10:03:57            1
+#> 23   stringr 2021-05-26 11:44:21            1
 #> 24     tools                <NA>            1
-#> 25     utils 2021-05-26 10:03:57            5
+#> 25     utils 2021-05-26 11:44:21            5
 #> 26      xfun                <NA>            1
 #> 27      yaml                <NA>            1
 
@@ -120,6 +120,24 @@ sum(all_pkg$times_loaded == 0) ## number of packages not used during this sessio
 #> [1] 217
 
 packtrack_stop() ## tracking stops
+
+detach(package:stringr) ## detach stringr
+
+packtrack_start() ## tracking starts anew
+
+packtrack_view() ## no packages used yet
+#>     package         last_loaded times_loaded
+#> 1 @^@_start 2021-05-26 11:44:21            0
+
+packtrack_pause() ## tracking pauses
+
+library(stringr)
+
+packtrack_resume() ## tracking resumes
+
+packtrack_view() ## tidyr has not been tracked
+#>     package         last_loaded times_loaded
+#> 1 @^@_start 2021-05-26 11:44:21            0
 ```
 
 ## What to expect in the future

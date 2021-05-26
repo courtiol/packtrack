@@ -4,10 +4,10 @@
 \alias{packtrack_start}
 \title{Start the tracking of namespaces}
 \usage{
-packtrack_start(replace_cache = FALSE)
+packtrack_start(create_cache = TRUE)
 }
 \arguments{
-\item{replace_cache}{whether or not to replace the existing .packtrack_data file (default = \code{FALSE}).}
+\item{create_cache}{whether or not to create a new .packtrack_data file (default = \code{TRUE}).}
 }
 \description{
 This function activates packtrack and is automatically called when the package is loaded.

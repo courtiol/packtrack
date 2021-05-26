@@ -2,21 +2,27 @@
 #'
 #' This function activates packtrack and is automatically called when the package is loaded.
 #'
-#' @param replace_cache whether or not to replace the existing .packtrack_data file (default = `FALSE`).
+#' @param create_cache whether or not to create a new .packtrack_data file (default = `TRUE`).
 #'
 #' @export
 #'
-packtrack_start <- function(replace_cache = FALSE) {
+packtrack_start <- function(create_cache = TRUE) {
   ## check that .packtrack_data is not present (not the case if packtrack has been stopped with option delete_cache = FALSE):
-  if (!replace_cache && exists(".packtrack_data")) {
-     stop("The packtrack cache is already present, so calling packtrack_start() would destroy it. Call packtrack_start(replace_cache = TRUE) if this is really what you want.")
+  if (!create_cache && !exists(".packtrack_data")) {
+     stop("The packtrack cache cannot be used since it is not present. Call packtrack_start() to initialise the cache.")
   }
 
-  ## initialise hidden variables:
-  .packtrack_data <<- list(time = hashmap::hashmap("@^@_start", Sys.time()),
-                           n = hashmap::hashmap("@^@_start", 0L),
-                           loadNamespace_original = loadNamespace)
-  class(.packtrack_data) <<-  c("pktk", class(.packtrack_data))
+  ## initialise cache if needed:
+  if (create_cache) {
+    if (exists(".packtrack_data")) {
+      ## restore original loadNamespace function otherwise the modified one would be stored:
+      assign("loadNamespace", .packtrack_data$loadNamespace_original, "package:base")
+    }
+    .packtrack_data <<- list(time = hashmap::hashmap("@^@_start", Sys.time()),
+                             n = hashmap::hashmap("@^@_start", 0L),
+                             loadNamespace_original = loadNamespace)
+    class(.packtrack_data) <<-  c("pktk", class(.packtrack_data))
+  }
 
   ## change R prompt if needed:
   options("prompt" = paste0("@^@ ", gsub(pattern = "@^@ ", replacement = "",
@@ -55,4 +61,24 @@ packtrack_stop <- function(delete_cache = TRUE) {
   }
 
   invisible(NULL)
+}
+
+#' Pause the tracking of namespaces
+#'
+#' This function pauses the tacking of packages.
+#'
+#' @export
+#'
+packtrack_pause <- function() {
+  packtrack_stop(delete_cache = FALSE)
+}
+
+#' Resume the tracking of namespaces
+#'
+#' This function resumes the tacking of packages if it had been paused.
+#'
+#' @export
+#'
+packtrack_resume <- function() {
+  packtrack_start(create_cache = FALSE)
 }
